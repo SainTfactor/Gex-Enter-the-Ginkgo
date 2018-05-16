@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.4
+// @version      0.1.5
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -18,10 +18,12 @@
 // Main Script
 var launch_gex = function() {
     //I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
-    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function(){ });
-    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function(){ });
-    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){ });
-
+    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function() {
+        jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function() {
+            jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){});
+        });
+    });
+	
 	jQuery("body").css("padding-bottom", "0");
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
