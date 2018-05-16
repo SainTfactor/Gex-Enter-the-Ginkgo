@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.8
+// @version      0.1.9
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -47,37 +47,29 @@ var launch_gex = function() {
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
 	var funct = "keydown";
+	var tap_delay = 150;
+	var cleartap = function() {
+		singlerun = false;
+		setTimeout(function() {
+			singlerun = true;
+		}, tap_delay);
+	};
 	var clickme = function(evt) {
 		if (!jQuery(".sideBarHeader").is(function(i,val){ return jQuery(val).width() > 0; })) {
 			if (singlerun && dabuttons_forward.indexOf(evt.which) != -1) {
-				singlerun = false;
-				setTimeout(function() {
-					singlerun = true;
-				}, 300);
+				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#btn_next").click();
 			} else if (singlerun && dabuttons_back.indexOf(evt.which) != -1) {
-				singlerun = false;
-				setTimeout(function() {
-					singlerun = true;
-				}, 300);
+				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#btn_back").click();
 			} else if (singlerun && dabuttons_pause.indexOf(evt.which) != -1) {
-				singlerun = false;
-				setTimeout(function() {
-					singlerun = true;
-				}, 300);
+				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_playPauseHolder").click();
 			} else if (singlerun && dabuttons_rewind.indexOf(evt.which) != -1) {
-				singlerun = false;
-				setTimeout(function() {
-					singlerun = true;
-				}, 300);
+				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_slider_sliderBtn").simulate("drag-n-drop", {dx:-30, interpolation: { stepWidth:10, stepDelay:10}});
 			} else if (singlerun && dabuttons_fastforward.indexOf(evt.which) != -1) {
-				singlerun = false;
-				setTimeout(function() {
-					singlerun = true;
-				}, 300);
+				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_slider_sliderBtn").simulate("drag-n-drop", {dx:30, interpolation: { stepWidth:10, stepDelay:10}});
 			}
 		}
