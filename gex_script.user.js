@@ -30,7 +30,7 @@ var launch_gex = function() {
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("background-color", "#777");
 	var singlerun = true;
 	var dabuttons_forward = [110, 13, 78, 39];
-	var dabuttons_back = [37];
+	var dabuttons_back = [37, 80];
 	var dabuttons_pause = [75, 32];
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
