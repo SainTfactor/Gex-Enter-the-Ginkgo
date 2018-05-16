@@ -27,7 +27,7 @@
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
 	var funct = "keydown";
-	clickme = function(evt) {
+	var clickme = function(evt) {
 		if (!jQuery(".sideBarHeader").is(function(i,val){ return jQuery(val).width() > 0; })) {
 			if (singlerun && dabuttons_forward.indexOf(evt.which) != -1) {
 				singlerun = false;
