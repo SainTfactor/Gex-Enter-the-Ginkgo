@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1
+// @version      0.1.1
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -20,13 +20,13 @@
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("background-color", "#777");
-	singlerun = true;
-	dabuttons_forward = [110, 13, 78, 39];
-	dabuttons_back = [37];
-	dabuttons_pause = [75, 32];
-	dabuttons_rewind = [74];
-	dabuttons_fastforward = [76];
-	funct = "keydown";
+	var singlerun = true;
+	var dabuttons_forward = [110, 13, 78, 39];
+	var dabuttons_back = [37];
+	var dabuttons_pause = [75, 32];
+	var dabuttons_rewind = [74];
+	var dabuttons_fastforward = [76];
+	var funct = "keydown";
 	clickme = function(evt) {
 		if (!jQuery(".sideBarHeader").is(function(i,val){ return jQuery(val).width() > 0; })) {
 			if (singlerun && dabuttons_forward.indexOf(evt.which) != -1) {
