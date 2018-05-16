@@ -1,12 +1,19 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.9.2
+// @version      0.1.9.3
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
 // @updateURL    https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.user.js
 // ==/UserScript==
+
+//I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
+jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function() {
+    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function() {
+        jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){});
+    });
+});
 
 // Launches the script after a small delay
 (function(){
@@ -21,14 +28,14 @@
                ) {
                 this.lastPathStr  = location.pathname;
                 this.lastQueryStr = location.search;
-                setTimeout(function() { launch_gex () }, 500);
+                setTimeout(function() { launch_gex (); }, 500);
             }
         }, 222);
 })();
 
 
 // Main Script
-var launch_gex = function() {	
+var launch_gex = function() {
 	jQuery("body").css("padding-bottom", "0");
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
@@ -40,7 +47,7 @@ var launch_gex = function() {
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
 	var funct = "keydown";
-	var tap_delay = 300;
+	var tap_delay = 150;
 	var cleartap = function() {
 		singlerun = false;
 		setTimeout(function() {
@@ -67,31 +74,26 @@ var launch_gex = function() {
 			}
 		}
 	};
-	console.log(semaforeAgain);
-	if (semaforeAgain === undefined) {
-		//I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
-	    	jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function() {
-			jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function() {
-		    	jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){});
-			});
-	    	});
-		
-		jQuery("html").on(funct, function(evt) {
-			clickme(evt);
-		});
-		jQuery(jQuery(".tinCaniFrame")[0].contentWindow.document).on(funct, function(evt) {
-			clickme(evt);
-		});
-		jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).on(funct, function(evt) {
-			clickme(evt);
-		});
-		jQuery(".tinCaniFrame").contents().find("#pageNumber").bind("DOMSubtreeModified", function() {
-			setTimeout(function() {
-				jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).on(funct, function(evt) {
-					clickme(evt);
-				});
-			}, 1000);
-		});
-	}
-	var semaforeAgain = true;
+
+    jQuery("html").off();
+    jQuery(jQuery(".tinCaniFrame")[0].contentWindow.document).off();
+    jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).off();
+    jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).off();
+
+    jQuery("html").on(funct, function(evt) {
+        clickme(evt);
+    });
+    jQuery(jQuery(".tinCaniFrame")[0].contentWindow.document).on(funct, function(evt) {
+        clickme(evt);
+    });
+    jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).on(funct, function(evt) {
+        clickme(evt);
+    });
+    jQuery(".tinCaniFrame").contents().find("#pageNumber").bind("DOMSubtreeModified", function() {
+        setTimeout(function() {
+            n(funct, function(evt) {
+                clickme(evt);
+            });
+        }, 1000);
+    });
 };
