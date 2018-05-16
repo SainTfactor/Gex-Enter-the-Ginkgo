@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.6
+// @version      0.1.7
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -12,8 +12,20 @@
 (function(){
     'use strict';
 
-    setTimeout(function(){ launch_gex(); }, 1500);
+    var pageURLCheckTimer = setInterval (
+        function () {
+            if (    this.lastPathStr  !== location.pathname
+                ||  this.lastQueryStr !== location.search
+                ||  this.lastPathStr   === null
+                ||  this.lastQueryStr  === null
+               ) {
+                this.lastPathStr  = location.pathname;
+                this.lastQueryStr = location.search;
+                launch_gex ();
+            }
+        }, 1000);
 })();
+
 
 // Main Script
 var launch_gex = function() {
