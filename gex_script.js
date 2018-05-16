@@ -1,21 +1,26 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.2
+// @version      0.1.3
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
 // @updateURL    https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.js
-// @require      http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js
-// @require      http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js
-// @require      http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js
-// @grant        GM_addStyle
-// @grant        GM_getResourceText
 // ==/UserScript==
 
-(function() {
+(function(){
     'use strict';
-	
+
+    setTimeout(function(){ launch_gex(); }, 1500);
+})();
+
+
+var launch_gex = function() {
+    //I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
+    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function(){ });
+    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function(){ });
+    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){ });
+
 	jQuery("body").css("padding-bottom", "0");
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
@@ -81,4 +86,4 @@
 		});
 	}
 	var semaforeAgain = true;
-})()
+};
