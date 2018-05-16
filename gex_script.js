@@ -8,13 +8,14 @@
 // @updateURL    https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.js
 // ==/UserScript==
 
+// Launches the script after a small delay
 (function(){
     'use strict';
 
     setTimeout(function(){ launch_gex(); }, 1500);
 })();
 
-
+// Main Script
 var launch_gex = function() {
     //I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
     jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function(){ });
