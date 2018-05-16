@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.9
+// @version      0.1.9.1
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -47,7 +47,7 @@ var launch_gex = function() {
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
 	var funct = "keydown";
-	var tap_delay = 150;
+	var tap_delay = 300;
 	var cleartap = function() {
 		singlerun = false;
 		setTimeout(function() {
