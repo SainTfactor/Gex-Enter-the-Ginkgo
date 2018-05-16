@@ -28,14 +28,7 @@
 
 
 // Main Script
-var launch_gex = function() {
-    //I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
-    jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function() {
-        jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function() {
-            jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){});
-        });
-    });
-	
+var launch_gex = function() {	
 	jQuery("body").css("padding-bottom", "0");
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
@@ -74,7 +67,15 @@ var launch_gex = function() {
 			}
 		}
 	};
+	console.log(semaforeAgain);
 	if (semaforeAgain === undefined) {
+		//I have to put them in like this, cause there's some sort of weird scoping issue if you include them with an @required
+	    	jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.js", function() {
+			jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.ext.js", function() {
+		    	jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.drag-n-drop.js", function(){});
+			});
+	    	});
+		
 		jQuery("html").on(funct, function(evt) {
 			clickme(evt);
 		});
