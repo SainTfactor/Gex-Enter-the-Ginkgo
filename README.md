@@ -18,6 +18,12 @@ Keyboard controls:
   * J
 * **Fast Forward**
   * L
+* **Font Size Up**
+  * W
+  * \<plus\>
+* **Font Size Down**
+  * Q
+  * \<minus\>
 
 
 
