@@ -1,7 +1,8 @@
 # Install
 
 To install, first get the TamperMonkey Chrome extension: [HERE](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)  
-Then go to the raw page for gex_script.user.js: [HERE](https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.user.js)  
+
+For Gex install, you just go to the raw page for gex_script.user.js: [HERE](https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.user.js)  
 Hit "Install", and you should be good to go.
 
 For Chronos Trigger install, you can basically do the same as with Gex.  Go to the raw page for it: [HERE](https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/ChronosTrigger.user.js)  
