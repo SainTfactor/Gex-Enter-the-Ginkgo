@@ -30,6 +30,10 @@ Keyboard controls:
 * **Font Size Down**
   * Q
   * \<minus\>
+* **Scroll Content Up**
+  * \<up arrow\>
+* **Scroll Content Down**
+  * \<down arrow\>
 
 
 
