@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.1.9.3
+// @version      0.2.0.0
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -33,21 +33,30 @@ jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.
         }, 222);
 })();
 
+//Settings that need to be reloaded.
+var fontsize = parseFloat(jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size"));
+
 
 // Main Script
 var launch_gex = function() {
+    // Page fixes
 	jQuery("body").css("padding-bottom", "0");
 	jQuery(".tinCaniFrame").css("height", "875px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("background-color", "#777");
+	jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize);
+
+    // Actions
 	var singlerun = true;
 	var dabuttons_forward = [110, 13, 78, 39];
 	var dabuttons_back = [37, 80];
 	var dabuttons_pause = [75, 32];
 	var dabuttons_rewind = [74];
 	var dabuttons_fastforward = [76];
+	var dabuttons_fontPlus = [87, 187, 107];
+	var dabuttons_fontMinus = [81, 189, 109];
 	var funct = "keydown";
-	var tap_delay = 150;
+	var tap_delay = 400;
 	var cleartap = function() {
 		singlerun = false;
 		setTimeout(function() {
@@ -66,11 +75,15 @@ var launch_gex = function() {
 				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_playPauseHolder").click();
 			} else if (singlerun && dabuttons_rewind.indexOf(evt.which) != -1) {
-				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_slider_sliderBtn").simulate("drag-n-drop", {dx:-30, interpolation: { stepWidth:10, stepDelay:10}});
 			} else if (singlerun && dabuttons_fastforward.indexOf(evt.which) != -1) {
-				cleartap();
 				jQuery(".tinCaniFrame").contents().find("#ajaxiFrame").contents().find("#Stage_slider_sliderBtn").simulate("drag-n-drop", {dx:30, interpolation: { stepWidth:10, stepDelay:10}});
+			} else if (singlerun && dabuttons_fontPlus.indexOf(evt.which) != -1) {
+                fontsize = parseFloat(jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size"));
+                jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize + 1);
+			} else if (singlerun && dabuttons_fontMinus.indexOf(evt.which) != -1) {
+                fontsize = parseFloat(jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size"));
+                jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize - 1);
 			}
 		}
 	};
