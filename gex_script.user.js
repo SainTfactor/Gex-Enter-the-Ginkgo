@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.2.0.0
+// @version      0.2.0.1
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -48,6 +48,7 @@ var launch_gex = function() {
 
     // Actions
 	var singlerun = true;
+    var scrollplace = 0;
 	var dabuttons_forward = [110, 13, 78, 39];
 	var dabuttons_back = [37, 80];
 	var dabuttons_pause = [75, 32];
@@ -55,6 +56,8 @@ var launch_gex = function() {
 	var dabuttons_fastforward = [76];
 	var dabuttons_fontPlus = [87, 187, 107];
 	var dabuttons_fontMinus = [81, 189, 109];
+	var dabuttons_scrollUp = [38];
+	var dabuttons_scrollDown = [40];
 	var funct = "keydown";
 	var tap_delay = 400;
 	var cleartap = function() {
@@ -84,6 +87,14 @@ var launch_gex = function() {
 			} else if (singlerun && dabuttons_fontMinus.indexOf(evt.which) != -1) {
                 fontsize = parseFloat(jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size"));
                 jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize - 1);
+			} else if (singlerun && dabuttons_scrollUp.indexOf(evt.which) != -1) {
+                evt.preventDefault();
+                scrollplace = jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop();
+                jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop(scrollplace - 30);
+			} else if (singlerun && dabuttons_scrollDown.indexOf(evt.which) != -1) {
+                evt.preventDefault();
+                scrollplace = jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop();
+                jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop(scrollplace + 30);
 			}
 		}
 	};
