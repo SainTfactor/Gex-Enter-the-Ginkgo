@@ -2,6 +2,12 @@
 
 Makes the Ginkgo interface more useable by increasing the size of the gray text area at the bottom and adding keyboard navigation.
 
+To install, first get the TamperMonkey Chrome extension: [HERE](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)  
+Then go to the raw page for gex_script.user.js: [HERE](https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/gex_script.user.js)  
+Hit "Install", and you should be good to go.
+
+If you have any questions, feel free to hit me up!
+
 Keyboard controls:
 * **Play/Pause** 
   * K
@@ -28,6 +34,12 @@ Keyboard controls:
 
 
 # Chronos Trigger
+
+A userscript for making the vmware web view interaction interface more user friendly.
+
+For Chronos Trigger install, you can basically do the same as with Gex.  Go to the raw page for it: [HERE](https://raw.githubusercontent.com/SainTfactor/Gex-Enter-the-Ginkgo/master/ChronosTrigger.user.js)  
+And just hit "Install."  
+
 Also, rehosting the Chronos Trigger plugin with minor fixes (since stuff has changed since initial development).  Basically all the tools you need for the environment.
 
 All credit where credit is due, here's the original Chronos Trigger: https://github.com/bryfry/chronos_trigger
