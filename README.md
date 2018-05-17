@@ -5,15 +5,15 @@ Makes the Ginkgo interface more useable by increasing the text area and adding k
 Keyboard controls:
 * **Play/Pause** 
   * K
-  * <space>
+  * \<space\>
 * **Next Slide**
   * N
-  * <right arrow>
-  * <period>
-  * <enter>
+  * \<right arrow\>
+  * \<period\>
+  * \<enter\>
 * **Previous Slide**
   * P
-  * <left arrow>
+  * \<left arrow\>
 * **Rewind**
   * J
 * **Fast Forward**
