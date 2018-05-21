@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.2.02
+// @version      0.2.03
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -117,7 +117,7 @@ var launch_gex = function() {
     });
     jQuery(".tinCaniFrame").contents().find("#pageNumber").bind("DOMSubtreeModified", function() {
         setTimeout(function() {
-            n(funct, function(evt) {
+            jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).on(funct, function(evt) {
                 clickme(evt);
             });
         }, 1000);
