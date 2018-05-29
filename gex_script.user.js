@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.2.03
+// @version      0.2.04
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -37,14 +37,20 @@ jQuery.getScript("http://j-ulrich.github.io/jquery-simulate-ext/jquery.simulate.
 var fontsize = parseFloat(jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size"));
 
 
-// Main Script
-var launch_gex = function() {
+var onWinResize = function() {
     // Page fixes
 	jQuery("body").css("padding-bottom", "0");
-	jQuery(".tinCaniFrame").css("height", "875px");
-	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", "247px");
+	jQuery(".tinCaniFrame").css("height", jQuery(window).height() - jQuery(".tinCaniFrame").offset().top - 2); // Minus 2, so not to be flush
+    // The -11 is the padding on that div (10px), +2 so that it isn't perfectly flush with the bottom.
+	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("height", jQuery(".tinCaniFrame").height() - jQuery(".tinCaniFrame").contents().find("#transcriptContainer").offset().top - 12);
 	jQuery(".tinCaniFrame").contents().find("#transcriptContainer").css("background-color", "#777");
 	jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize);
+}
+
+// Main Script
+var launch_gex = function() {
+    // Run page fixes
+    onWinResize();
 
     // Actions
 	var singlerun = true;
@@ -102,9 +108,14 @@ var launch_gex = function() {
 	};
 
     jQuery("html").off();
+    jQuery(window).off();
     jQuery(jQuery(".tinCaniFrame")[0].contentWindow.document).off();
     jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).off();
     jQuery(jQuery(".tinCaniFrame").contents().find("#ajaxiFrame")[0].contentWindow.document).off();
+
+    jQuery(window).resize(function() {
+        onWinResize();
+    });
 
     jQuery("html").on(funct, function(evt) {
         clickme(evt);
