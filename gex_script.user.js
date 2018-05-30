@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.2.05
+// @version      0.2.06
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
@@ -161,9 +161,11 @@ var launch_gex = function() {
                 jQuery(".tinCaniFrame").contents().find("#transcriptText").css("font-size", fontsize - 1);
                 jQuery(".tinCaniFrame").contents().find("#transcriptText").css("line-height", (fontsize + 4) + "px");
             } else if (singlerun && dabuttons_scrollUp.indexOf(evt.which) != -1) {
+		if($("#countdown-timer")[0] == undefined) { evt.preventDefault(); }
                 scrollplace = jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop();
                 jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop(scrollplace - 30);
             } else if (singlerun && dabuttons_scrollDown.indexOf(evt.which) != -1) {
+		if($("#countdown-timer")[0] == undefined) { evt.preventDefault(); }
                 scrollplace = jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop();
                 jQuery(".tinCaniFrame").contents().find("#transcriptContainer").scrollTop(scrollplace + 30);
             }
