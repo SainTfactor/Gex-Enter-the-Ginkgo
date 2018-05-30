@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gex, Enter the Ginkgo
 // @namespace    https://github.com/SainTfactor/Gex-Enter-the-Ginkgo
-// @version      0.2.04
+// @version      0.2.07
 // @description  Making Ginkgo not suck again!
 // @author       @SainTfactor
 // @match        http://ginkgo.azuretitan.com/*resume_course*
